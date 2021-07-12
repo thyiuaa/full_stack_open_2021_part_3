@@ -1,8 +1,9 @@
 const { json } = require('express')
 const express = require('express')
-var morgan = require('morgan')
+const morgan = require('morgan')
 const app = express()
 
+app.use(express.static('build'))
 app.use(express.json())
 app.use(morgan((tokens, req, res) => {
     // console.log(tokens.method(req, res), typeof tokens.method(req, res));
@@ -113,7 +114,7 @@ app.delete('/api/persons/:id', (request, response) => {
     }
 })
 
-const PORT = 3001
+const PORT = process.env.PORT||3001
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`)
 })
