@@ -5,7 +5,7 @@ const cors = require('cors')
 const Person = require('./models/person')
 const app = express()
 
-//app.use(express.static('build'))
+app.use(express.static('build'))
 app.use(cors())
 app.use(express.json())
 app.use(morgan((tokens, req, res) => {
