@@ -16,7 +16,7 @@ const Records = ({ records, persons, setPersons }) => {
           console.log('Record deletion FAILED!', error)
         })
     } else {
-      console.log('User cancelled record deletion.');
+      console.log('User cancelled record deletion.')
     }
   }
 
@@ -25,9 +25,9 @@ const Records = ({ records, persons, setPersons }) => {
       {
         records.map((record) => {
           return <p key={record.name}>
-              {record.name} {record.number}
-              <Button label='delete' clickHandler={() => deleteRecord(record)} />
-            </p>
+            {record.name} {record.number}
+            <Button label='delete' clickHandler={() => deleteRecord(record)} />
+          </p>
         })
       }
     </div>

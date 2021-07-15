@@ -10,21 +10,21 @@ const Form = ({ persons, setPersons, setNotiObj }) => {
     const confirmUpdate = window.confirm(`${personUpdate.name} is already added to phonebook, replace the old number with a new one?`)
     if ( confirmUpdate ) {
       const personObj = { ...personUpdate, number: newNumber }
-      console.log('personObj', personObj);
+      console.log('personObj', personObj)
       personsService
         .update(personUpdate.id, personObj)
         .then(personUpdated => {
-          console.log('Record update SUCCESSFUL!', personUpdated);
+          console.log('Record update SUCCESSFUL!', personUpdated)
           setPersons(persons.map(person => (person.id === personUpdated.id) ? personUpdated : person))
         })
         .catch(error => {
-          console.log('Record update FAILED!', error);
+          console.log('Record update FAILED!', error)
           setNotiObj({ message: `Information of ${personUpdate.name} has already been removed from server`, color: 'red' })
-          setTimeout(() => { setNotiObj({message: null}) }, 5000)
+          setTimeout(() => { setNotiObj({ message: null }) }, 5000)
           setPersons(persons.filter(person => person.id !== personUpdate.id))
         })
     } else {
-      console.log('User cancelled record update.');
+      console.log('User cancelled record update.')
     }
   }
 
@@ -44,12 +44,12 @@ const Form = ({ persons, setPersons, setNotiObj }) => {
           setNewName('')
           setNewNumber('')
           setNotiObj({ message: `Added ${newPerson.name}`, color: 'green' })
-          setTimeout(() => { setNotiObj({message: null}) }, 5000)
+          setTimeout(() => { setNotiObj({ message: null }) }, 5000)
         })
         .catch(error => {
           console.log('Error when creating new entry', error)
           setNotiObj({ message: error.response.data.error, color: 'red' })
-          setTimeout(() => { setNotiObj({message: null}) }, 5000)
+          setTimeout(() => { setNotiObj({ message: null }) }, 5000)
         })
     }
   }

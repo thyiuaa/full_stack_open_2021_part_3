@@ -1,4 +1,4 @@
-import React, { useState , useEffect} from 'react'
+import React, { useState , useEffect } from 'react'
 
 import Records from './components/Records'
 import Form from './components/Form'
@@ -17,7 +17,7 @@ const App = () => {
     personsService
       .getAll()
       .then(persons => {
-        console.log("data fetched!", persons)
+        console.log('data fetched!', persons)
         setPersons(persons)
       })
   }, [])
