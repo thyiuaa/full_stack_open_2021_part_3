@@ -32,11 +32,9 @@ const Form = ({ persons, setPersons, setNotiObj }) => {
   const handleInputNumberChange = (event) => setNewNumber(event.target.value)
   const handleFormSubmit = (event) => {
     event.preventDefault()
-    const samePersonIndex = persons
-                        .map(person => person.name)
-                        .findIndex(name => name.match(newName) !== null)
-    if ( samePersonIndex !== -1 ) {
-      updatePerson(persons[samePersonIndex])
+    const samePerson = persons.find(person => person.name === newName)
+    if ( samePerson ) {
+      updatePerson(samePerson)
     }else if ( (newName !== '') && (newNumber !== '') ) {
       const personObj = { name: newName, number: newNumber }
       personsService
@@ -46,6 +44,11 @@ const Form = ({ persons, setPersons, setNotiObj }) => {
           setNewName('')
           setNewNumber('')
           setNotiObj({ message: `Added ${newPerson.name}`, color: 'green' })
+          setTimeout(() => { setNotiObj({message: null}) }, 5000)
+        })
+        .catch(error => {
+          console.log('Error when creating new entry', error)
+          setNotiObj({ message: error.response.data.error, color: 'red' })
           setTimeout(() => { setNotiObj({message: null}) }, 5000)
         })
     }
