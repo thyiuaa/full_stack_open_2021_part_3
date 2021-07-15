@@ -7,9 +7,9 @@
     "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon index.js",
-    "build:ui": "rm -rf build && cd ./frontend/ && npm run build --prod && cp -r build ../",
+    "build:ui": "rm -rf build && cd ../frontend/ && npm run build --prod && cp -r build ../backend/ && rm -rf build",
     "deploy": "git push heroku HEAD:main",
-    "deploy:full": "npm run build:ui && git add . && git commit -m uibuild && git push && npm run deploy",
+    "deploy:full": "npm run build:ui && git add ../ && git commit -m uibuild && git push && npm run deploy",
     "logs:prod": "heroku logs --tail"
   },
   "author": "Tim",
@@ -18,9 +18,11 @@
     "nodemon": "^2.0.10"
   },
   "dependencies": {
+    "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "mongoose": "^5.13.2",
+    "mongoose-unique-validator": "^2.0.3",
     "morgan": "^1.10.0"
   },
   "engines": {
